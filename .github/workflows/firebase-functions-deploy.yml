@@ -30,4 +30,4 @@ jobs:
         with:
           args: deploy --only functions
         env:
-          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SCORES_APP_9D9F8 }}
+          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
