@@ -3,8 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master
-      - develop
+      - main
     paths:
       - "functions/**"
   pull_request:
@@ -30,4 +29,12 @@ jobs:
         with:
           args: deploy --only functions
         env:
-          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SCORES_APP_9D9F8 }}
+          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+  auto-approve:
+    needs: [build_and_deploy]
+    if: success() && github.actor == 'Banych'
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: hmarr/auto-approve-action@v3
