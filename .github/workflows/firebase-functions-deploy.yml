@@ -3,8 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master
-      - develop
+      - main
     paths:
       - "functions/**"
   pull_request:
